@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmacia Santo Remedio</title>
+</head>
+
+<body>
+    <script>
+        let cc = 1;
+        let forma_cc = " ";
+        let op = 1;
+        let conf = ""
+        var tot = 0;
+        var porc_OS = 0;
+        var desc_OS = 0;
+        var porc_desc_efec = 15;
+        var tot_con_desc = 0;
+        var tot_con_desc_efec = 0;
+        var desc_efec_sin_OS = 0;
+        var aPagar = 0;
+
+
+        do {
+            console.clear()
+            console.log("****** M E N U ******");
+            console.log("(1) Comprar");
+            console.log("(2) Metodo de Pago");
+            console.log("");
+            console.log("(0) Salir");
+            console.log("");
+            console.log("");
+            console.log("TOTAL Facturado:", tot);
+            if (conf == "1") {
+                console.log("CONFIRMAR el Metodo de Pago");
+            } else { 
+                console.log("COMPRAR los Productos que Necesite");
+                }
+            console.log();
+
+            op = prompt("Elije tu Opcion:");
+            switch (op) {
+                case "1":
+                    console.clear()
+                    console.log("COMPRAR");
+                    cc = 1;
+                    tot = 0;
+                    let cant = 0;
+                    let det = " ";
+                    let pcio = 0;
+                    let parc = 0;
+                    console.log("Ingrese la Cantidad - Detalle y Precio: de lo que compra:");
+                    while (cc == 1) {
+                        conf = " ";
+                        cant = 0;
+                        det = " ";
+                        pcio = 0;
+                        parc = 0;
+                        cant = prompt("Cantidad a Comprar:");
+                        det = prompt("Detalle de Compra:");
+                        pcio = prompt("Precio del Producto:");
+                        parc = cant * pcio;
+                        prompt("Total del Producto:", parc)
+                        tot = tot + parc;
+
+                        console.log(cant, " ", det, " ", pcio, " ", parc);
+                        console.log("Facturado hasta el momento:", tot);
+
+                        cc = prompt("Compra mas productos: (1) SI - (2) NO");
+                    }
+                    conf = prompt("CONFIRMA PAGAR EL TOTAL DEL PEDIDO:  (1) SI - (2) NO");
+                    if (conf == "1") {
+                        prompt("CONFIRMAR el Metodo de Pago");
+                    } else {
+                        prompt("NO CONFIRMO COMPRA (Vuelva a Comprar)");
+                        tot = 0
+                    }
+                    break;
+                case "2":
+                    if (conf == "1") {
+                        console.clear();
+                        console.log("Metodo de Pago");
+                        var os = 1;
+                        var cuotas = 0;
+                        let forma_cuotas = " "
+                        var Valor_cuota = 0;
+                        var recargo_tarj = 0;
+                        var tvm_1 = 0;
+                        var tv_3_6 = 20;
+                        var tv_9 = 25;
+                        var tv_12 = 30;
+                        var tm_3_6 = 25;
+                        var tm_9 = 30;
+                        var tm_12 = 40;
+
+                        porc_OS = 0;
+                        desc_OS = 0;
+                        tot_con_desc = 0;
+                        desc_efec_sin_OS = 0;
+                        tot_con_desc_efec = 0;
+                        aPagar = 0;
+                        cc = 1;
+
+                        console.log("Facturado hasta el momento:", tot);
+                        console.log("");
+                        os = prompt("Tiene OBRA SOCIAL (1) SI - (2) NO");
+                        if (os == 1) {
+                            porc_OS = prompt("Ingrese el % descuento OBRA SOCIAL (solo número)");
+                            desc_OS = tot * (porc_OS / 100);
+                            tot_con_desc = tot - desc_OS;
+                        } else {
+                            tot_con_desc = tot;
+                        }
+                        console.log("Total Facturado:", tot);
+                        console.log("");
+                        console.log("Descuento Obra Social:", desc_OS);
+                        console.log("");
+                        console.log("Total a Pagar:", tot_con_desc);
+                        console.log("");
+                        console.log("****** FORMA DE PAGO ******");
+                        console.log("(1) Efectivo");
+                        console.log("(2) Tarjeta VISA");
+                        console.log("(3) Meracdo Pago");
+
+                        cc = prompt("Forma de Pago : (1)Efec. (2)Tarjeta (3)Mercado Pago");
+                        switch (cc) {
+                            case "1":
+                                forma_cc = "EFECTIVO"
+                                if (os != 1) {
+                                    console.log("DESCUENTO POR PAGO EN EFECTIVO SIN OBRA SOCIAL");
+                                    console.log(porc_desc_efec + "%  de Descuento sobre el Total:" + tot_con_desc);
+                                    console.log("");
+                                    desc_efec_sin_OS = tot_con_desc * porc_desc_efec / 100;
+                                    tot_con_desc_efec = tot_con_desc - desc_efec_sin_OS;
+                                    aPagar = tot_con_desc_efec
+
+                                    console.log("Total de Descuento por Pago Efectivo", desc_efec_sin_OS);
+                                    console.log("");
+                                    console.log("Total a Pagar en Efectivo", aPagar);
+                                } else {
+                                    console.log("Total Facturado:", tot);
+                                    console.log("");
+                                    console.log("Descuento Obra Social:", desc_OS);
+                                    console.log("");
+                                    aPagar = tot_con_desc;
+                                    console.log("Total a Pagar:", aPagar);
+                                    console.log("");
+                                }
+                                prompt("DIRIJASE A CAJA A PAGAR", aPagar);
+                                conf = " "
+                                break;
+
+                            case "2":
+                                forma_cc = "TARJETA VISA"
+                                cuotas = 0;
+                                forma_cuotas = " "
+                                Valor_cuota = 0;
+                                recargo_tarj = 0;
+                                console.log("PAGO CON  TARJETA VISA");
+                                console.log("***Elija las Cuotas***");
+                                console.log("    1 Cuota  sin   Recargo");
+                                console.log("3 o 6 Cuotas Recargo (20%)");
+                                console.log("    9 Cuotas Recargo (25%)");
+                                console.log("   12 Cuotas Recargo (30%)");
+                                cuotas = prompt("Elija la Cantidad de Cuotas: ");
+                                switch (cuotas) {
+                                    case "1":
+                                        forma_cuotas = "1 Cuota  sin   Recargo";
+                                        recargo_tarj = tot_con_desc * (tvm_1 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Tarjeta:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Tarjeta:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+                                        break;
+                                    case "3":
+                                        forma_cuotas = "3 Cuotas  Recargo (20%)";
+                                        recargo_tarj = tot_con_desc * (tv_3_6 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Tarjeta:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Tarjeta:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "6":
+                                        forma_cuotas = "6 Cuotas  Recargo (20%)";
+                                        recargo_tarj = tot_con_desc * (tv_3_6 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Tarjeta:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Tarjeta:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "9":
+                                        forma_cuotas = "9 Cuotas  Recargo (25%)"
+                                        recargo_tarj = tot_con_desc * (tv_9 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Tarjeta:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Tarjeta:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "12":
+                                        forma_cuotas = "9 Cuotas  Recargo (25%)";
+                                        recargo_tarj = tot_con_desc * (tv_12 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Tarjeta:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Tarjeta:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    default:
+                                        prompt("error en CUOTAS");
+                                        break;
+                                }
+                                break;
+                            case "3":
+                                forma_cc = "MERCADO PAGO"
+                                cuotas = 0;
+                                forma_cuotas = " "
+                                Valor_cuota = 0;
+                                recargo_tarj = 0;
+                                console.log("PAGO CON  MERCADO PAGO");
+                                console.log("***Elija las Cuotas***");
+                                console.log("    1 Cuota  sin   Recargo");
+                                console.log("3 o 6 Cuotas Recargo (25%)");
+                                console.log("    9 Cuotas Recargo (30%)");
+                                console.log("   12 Cuotas Recargo (40%)");
+                                cuotas = prompt("Elija la Cantidad de Cuotas: ");
+                                switch (cuotas) {
+                                    case "1":
+                                        forma_cuotas = "1 Cuota  sin   Recargo";
+                                        recargo_tarj = tot_con_desc * (tvm_1 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Mercado Pago:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Mercado Pago:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+                                        break;
+                                    case "3":
+                                        forma_cuotas = "3 Cuotas  Recargo (25%)";
+                                        recargo_tarj = tot_con_desc * (tm_3_6 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Mercado Pago:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Mercado Pago:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "6":
+                                        forma_cuotas = "6 Cuotas  Recargo (25%)";
+                                        recargo_tarj = tot_con_desc * (tm_3_6 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Mercado Pago:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Mercado Pago:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "9":
+                                        forma_cuotas = "9 Cuotas  Recargo (30%)";
+                                        recargo_tarj = tot_con_desc * (tm_9 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Mercado Pago:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Mercado Pago:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    case "12":
+                                        forma_cuotas = "9 Cuotas  Recargo (30%)";
+                                        recargo_tarj = tot_con_desc * (tm_12 / 100 + 1);
+                                        aPagar = tot_con_desc + recargo_tarj;
+                                        Valor_cuota = aPagar / cuotas;
+                                        console.log("Total Facturado:", tot);
+                                        console.log("");
+                                        console.log("Descuento Obra Social:", desc_OS);
+                                        console.log("");
+                                        console.log("Total Facturado:", tot_con_desc);
+                                        console.log("");
+                                        console.log("Recargo Mercado Pago:", recargo_tarj);
+                                        console.log("");
+                                        console.log("Total a Pagar con Mercado Pago:", aPagar);
+                                        console.log("");
+                                        console.log("Cantidad de Cuotas", cuotas);
+                                        console.log("");
+                                        console.log("Valor de la Cuota:", Valor_cuota);
+                                        console.log("");
+
+                                        prompt("ENTREGUE LA TARJETA Y EL D.N.I.");
+
+                                        break;
+                                    default:
+                                        prompt("error en CUOTAS");
+                                        break;
+                                }
+                            default:
+                                break;
+                        }
+                                tot = 0
+                                conf = " "
+                    } else {
+                            prompt("NO REALIZO NINGUNA COMPRA - Elija Comprar");
+                        }
+                    
+                    break;
+                case "0":
+                    console.clear()
+                    console.log("Salir");
+                    break;
+                default:
+                    console.clear()
+                    console.log("Opcion incorrecta, vuelva a Ingresar")
+                    break;
+            }
+        
+        } while (op != 0);
+    </script>
+</body>
+
+</html>

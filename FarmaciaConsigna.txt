@@ -1,0 +1,23 @@
+C- Crear un sistema de “Facturación” para una farmacia, 
+el mismo deberá recibir el valor total de el carrito por usuario 
+y deberá solicitar una forma de pago. Las formas de pago pueden
+ser:
+Obra Social (SI o NO)
+    SI: 
+        Descuento del % de la Obra Social
+    NO:
+        15% Descuento del Total a Pagar (Solo Efectivo)
+
+1- Efectivo (Sin Recargos) 
+
+2- Tarjeta (hasta 12 cuotas): Recargos
+                    3 a 6   cuotas 20%
+                        9   cuotas 25%
+                        12  cuotas 30%
+3- Mercadopago (hasta 12 cuotas): Recargos
+                    3 a 6   cuotas 25%
+                        9   cuotas 30%
+                        12  cuotas 40%
+
+El sistema deberá permitirle al usuario seleccionar si desea continuar con otra operación
+o si desea finalizar con la cobranza.

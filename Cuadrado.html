@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CUADRADO</title>
+  </head>
+  <body>
+    <h1>JavaScript</h1>
+    <h2>El Cuadrado</h2>
+    <script>
+      let dim = 0; /*Total de caracteres para el cuadrado*/
+      let i = 1; /*Para recorrer la fila poniendo los "#" */
+      let j = 1; /*Para recorrer la parte central poniendo los espacios  */
+      let cuad = "";
+      let cuadTop = "";
+      let op=1;
+      var hola = "Hola Gero";
+      console.log(hola);
+      let hello = "Hecha la opcion de continuar con While";
+      console.log(hello);
+
+      while (op==1) {
+        dim = prompt("Ingrese la Dimension del cuadrado (de 2 a 10 permitidos): "); 
+        if (dim>=2 && dim<=10) {
+          i=1;
+          j=1;
+          cuadTop="";
+          console.log(`Cuadrado de `, dim, `caracteres`);
+          /*Parte superior e inferior del cuadrado*/
+          for (i = 1; i <= dim; ++i) {
+            cuadTop += "#   "; 
+          }
+          console.log(cuadTop); /*imprimo la parte superior*/
+          console.log("");
+
+          /*Parte central del cuadrado*/
+          for (i = 1; i <= dim - 2; ++i) {
+            cuad = "";
+            cuad += "#  ";
+            for (j = 1; j <= dim - 2; ++j) {
+              cuad += "    ";
+            }
+            cuad += " #";
+            console.log(cuad);
+            console.log("");
+          }
+          /* OTRA OPCION PARA RELLENAR LA PARTE CENTRAL DEL CUADRADO USANDO LA FUNCION repeat DENTRO DEL console.log
+            for(i=1;i<=dim-2;++i) {
+                    console.log("#  "+"   ".repeat(dim-2)+" #");
+                    console.log("");
+            }*/
+
+          console.log(cuadTop); /*imprimo la parte inferior*/
+
+          op = prompt("Ingrese 1 para continuar");
+        } else {
+          console.error(dim + " Valor ingresado fuera de Rango");
+        }
+      }
+    </script>
+  </body>
+</html>

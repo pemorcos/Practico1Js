@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Par o Impar</title>
+  </head>
+  <body>
+    <h1>JavaScript</h1>
+    <h2>Saber si es Par o Impar</h2>
+
+    <script>
+      var hola = "Hola Gero";
+      console.log(hola);
+      let hello = "Hecha la opcion de continuar con While";
+      console.log(hello);
+      let a = 0;
+      let op = 1;
+      while (op == 1) {
+        try {
+          a = prompt("Ingrese el Numero que quiere evaluar");
+          if (isNaN(a)) {
+            throw new Error("El Caracter introducudo no es un Numero");
+          }
+          console.log(`El Valor del Numero es:`, a);
+          console.log("----------------------------");
+          console.log("Calculado con la parte entera:");
+          console.log("");
+            let b = a / 2;
+            console.log(a, `Dividido en 2 es:`, b);
+            let c = parseInt(b);
+            console.log(`La parte entera es:`, c);
+            if (c === b) {
+              console.log(a, `Es un Nro. PAR`);
+            } else {
+              console.log(a, `Es un Nro. IMPAR`);
+            }
+         
+          console.log("----------------------------");
+          console.log("Calculado con la operacion Modulo:");
+          console.log("");
+          function ParImparConResto() {
+            let d = a % 2;
+            console.log(`El Resultado de la operación con Modulo:`, d);
+            return d;
+          }
+          let e = ParImparConResto();
+          console.log(`El Valor retornado de la función es: `, e);
+          if (e === 0) {
+            console.log(a + ` Es un Nro. PAR`);
+          } else {
+            console.log(a + " Es un Nro. IMPAR");
+          }
+        } catch (Error) {
+          console.log(`Se produjo un ${Error}`);
+        }
+
+        op = prompt("Ingrese 1 para continuar");
+      }
+      console.log("La Opcion es:", op);
+      console.log("SALIO");
+    </script>
+  </body>
+</html>
